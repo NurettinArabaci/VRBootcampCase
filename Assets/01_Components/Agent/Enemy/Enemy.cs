@@ -59,5 +59,10 @@ public class Enemy : MonoBehaviour, IDamageable, IAttackable
             attacker.Attack();
             GetDamage(attacker);
         }
+
+        if (other.TryGetComponent(out IDamageable damageable))
+        {
+            Debug.Log("Damageable in here");
+        }
     }
 }

@@ -15,7 +15,7 @@ public class Bullet : MonoBehaviour, IAttackable
     private void OnEnable()
     {
         _inPool = false;
-        
+        ShootBullet();
     }
 
     public int AttackAmount
@@ -33,22 +33,36 @@ public class Bullet : MonoBehaviour, IAttackable
     public void Attack()
     {
         _inPool = true;
+        _rb.velocity = Vector3.zero;
         ObjectPooling.Instance.BackToPool(this.gameObject, "bullet");
+    }
+
+    void Update()
+    {
+        if (!Input.GetKeyDown(KeyCode.A)) return;
+        Debug.Log("Shoot");
+        ShootBullet();
     }
 
     IEnumerator BackToPoolCR()
     {
         float timeCounter = 10f;
+        
         while (!_inPool)
         {
             timeCounter -= Time.deltaTime;
+            Debug.Log($"time counter: {timeCounter}");
             if (timeCounter <= 0)
             {
 
                 _inPool = true;
+                _rb.velocity = Vector3.zero;
                 ObjectPooling.Instance.BackToPool(this.gameObject, "bullet");
+
+
                 yield return null;
             }
+            yield return null;
         }
     }
 

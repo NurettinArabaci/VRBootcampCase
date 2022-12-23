@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attack: 50
   _rb: {fileID: 2670511365615290807}
-  _speed: 10
+  _speed: 100
 --- !u!135 &11174094591401982
 SphereCollider:
   m_ObjectHideFlags: 0

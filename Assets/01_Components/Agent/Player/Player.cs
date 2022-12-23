@@ -31,6 +31,7 @@ public class Player : MonoBehaviour, IDamageable
         {
             attacker.Attack();
             GetDamage(attacker);
+            Debug.Log("Enemy is here");
         }
     }
 }
