@@ -37,12 +37,6 @@ public class Bullet : MonoBehaviour, IAttackable
         ObjectPooling.Instance.BackToPool(this.gameObject, "bullet");
     }
 
-    void Update()
-    {
-        if (!Input.GetKeyDown(KeyCode.A)) return;
-        Debug.Log("Shoot");
-        ShootBullet();
-    }
 
     IEnumerator BackToPoolCR()
     {

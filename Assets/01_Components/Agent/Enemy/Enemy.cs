@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UniRx;
+using UniRx.Triggers;
 
 public class Enemy : MonoBehaviour, IDamageable, IAttackable
 {
@@ -29,12 +31,12 @@ public class Enemy : MonoBehaviour, IDamageable, IAttackable
     private void Start()
     {
         player = FindObjectOfType<Player>().transform;
+
+        this.UpdateAsObservable().Subscribe(_ => _navMeshAgent.SetDestination(player.position));
+
     }
 
-    private void Update()
-    {
-        _navMeshAgent.SetDestination(player.position);
-    }
+   
 
     public void Die()
     {
